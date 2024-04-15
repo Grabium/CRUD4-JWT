@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Artigo\ArtigoController;
+use App\Http\Controllers\Artigo\MarcadorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('file', ArtigoController::class  );
+Route::resource('tag' , MarcadorController::class);

@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('table_marcadores', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('nome', 12)->unique();
-            $table->string('descricao')->nullable();
+            $table->string('name', 12)->unique();
+            $table->string('description')->nullable();
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_marcadores');
+        Schema::dropIfExists('marcadores');
     }
 };
