@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Artigo;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Marcador;
 
 class MarcadorController extends Controller
 {
@@ -37,7 +38,13 @@ class MarcadorController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    $data = $request->all();
+    Marcador::create([
+        'name'=>$request->name,
+        'description'=>$request->description
+    ]);
+    return 'Marcador '.$data['name'].' criado com sucesso!';
+    
   }
 
   /**

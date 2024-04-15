@@ -10,7 +10,7 @@
     <body>
 
         
-        <form  method="POST">
+        <form action="{{route('tag.store')}}" method="POST">
         @csrf
             <br />
             <br />
@@ -29,8 +29,8 @@
             <br />
 
             <legend>Crie uma nova tag:</legend>
-            <label for="descripton">Nome</label><br />
-            <input id="descripton" type="text" name="descripton"><br />
+            <label for="description">Nome</label><br />
+            <input id="description" type="text" name="description"><br />
             
             <button>Salvar</button>
         </form>

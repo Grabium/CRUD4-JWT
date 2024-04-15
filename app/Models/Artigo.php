@@ -9,6 +9,8 @@ class Artigo extends Model
 {
     use HasFactory;
 
+    protected $talbe = "articles";
+
     protected $fillable = [
         'name'
     ];
