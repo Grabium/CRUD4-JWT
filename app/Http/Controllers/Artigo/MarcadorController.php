@@ -15,7 +15,9 @@ class MarcadorController extends Controller
    */
   public function index()
   {
-    //
+    $marcadores = Marcador::all('id', 'name', 'tagColor');
+    //return $data;
+    return view('marcadores/list', ['marcadores'=>$marcadores]);
   }
 
   /**
@@ -25,9 +27,7 @@ class MarcadorController extends Controller
    */
   public function create()
   {
-    
     return view('marcadores/create');
-    
   }
 
   /**
@@ -41,10 +41,10 @@ class MarcadorController extends Controller
     $data = $request->all();
     Marcador::create([
         'name'=>$request->name,
-        'description'=>$request->description
+        'tagColor'=>$request->tagColor
     ]);
-    return 'Marcador '.$data['name'].' criado com sucesso!';
-    
+    //return 'Marcador '.$data['name'].' criado com sucesso!';
+    return $this->index();
   }
 
   /**
@@ -55,7 +55,9 @@ class MarcadorController extends Controller
    */
   public function show($id)
   {
-    //
+    //dd($id);
+    $marcador = Marcador::findOrFail($id);
+    return view('marcadores/show', ['marcador' => $marcador]);
   }
 
   /**
@@ -66,7 +68,10 @@ class MarcadorController extends Controller
    */
   public function edit($id)
   {
-    //
+    //dd($id);
+    $marcador = Marcador::findOrFail($id);
+    //dd($marcador['name']);
+    return view('marcadores/edit', ['marcador' => $marcador]);
   }
 
   /**
@@ -78,7 +83,15 @@ class MarcadorController extends Controller
    */
   public function update(Request $request, $id)
   {
-    //
+    $marcador = Marcador::findOrFail($id);
+    
+    $marcador->name        = $request->name;
+    $marcador->tagColor = $request->tagColor;
+
+    $marcador->save();
+    //$statusOperacao = 'atualizado';
+    $marcador = Marcador::findOrFail($id);
+    return view('marcadores/show', ['marcador' => $marcador]);
   }
 
   /**
@@ -89,6 +102,18 @@ class MarcadorController extends Controller
    */
   public function destroy($id)
   {
-    //
+    $marcador = Marcador::findOrFail($id);
+    $marcadorDeletado = $marcador['name'];
+    //dd($produtoDeletado);
+    $marcador->delete();
+    //$statusOperacao = 'deletado';
+    return view('/marcadores/excluido', ['marcadorDeletado' => $marcadorDeletado]);
+  }
+
+  public function pageConfirmarDeletar($id)
+  {
+    //recebe method=PUT mas na pageConfirmarDeletar envia DELETE.
+    $marcador = Marcador::findOrFail($id);
+    return view('marcadores/confirmarDeletar', ['marcador' => $marcador]);
   }
 }

@@ -20,3 +20,7 @@ Route::get('/', function () {
 
 Route::resource('file', ArtigoController::class  );
 Route::resource('tag' , MarcadorController::class);
+
+Route::get('/marcadores/pageConfirmarDeletar/{id}',
+           [MarcadorController::class, 'pageConfirmarDeletar'])
+            ->name('pageConfirmarDeletar');

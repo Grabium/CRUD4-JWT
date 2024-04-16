@@ -1,38 +1,22 @@
-<!DOCTYPE html>
-<html lang="t-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Tag</title>
-    </head>
+@extends('pattern/top')
+@section('content')
+@section('title', 'Criar Marcador')
 
-    <body>
+    
+<form action="{{route('tag.store')}}" method="POST">
+@csrf
+  
+  <h3>Crie uma nova tag:</h3>
 
-        
-        <form action="{{route('tag.store')}}" method="POST">
-        @csrf
-            <br />
-            <br />
-            <br />
-            <legend>Crie uma nova tag:</legend>
+  <label for="name">Nome:</label><br />
+  <input id="name" type="text" name="name" autofocus><br />
+  
+  <label for="tagColor">Descrição:</label><br />
+  <input id="tagColor" type="color" name="tagColor" value="#000000"><br />
+  
+  <button>Salvar</button>
+</form>
 
-            <br />
-            <br />
-            <br />
-            
-            <label for="name">Nome</label><br />
-            <input id="name" type="text" name="name" autofocus>
+<button><a href="{{ route('tag.index') }}">Voltar</a></button>
 
-            <br />
-            <br />
-            <br />
-
-            <legend>Crie uma nova tag:</legend>
-            <label for="description">Nome</label><br />
-            <input id="description" type="text" name="description"><br />
-            
-            <button>Salvar</button>
-        </form>
-    </body>
-</html>
+@endsection  
